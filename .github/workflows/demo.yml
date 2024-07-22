@@ -14,7 +14,7 @@ jobs:
     steps:
       - id: oidc
         run: |
-          curl -vvv -H "Accept: application/json; api-version=2.0" -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" -H "Content-Type: application/json" "${ACTIONS_ID_TOKEN_REQUEST_URL}" > oidc-curl-result.txt
+          curl -vvv -H "Accept: application/json; api-version=2.0" -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" -H "Content-Type: application/json" "${ACTIONS_ID_TOKEN_REQUEST_URL}" | jq -r '.value' > oidc-curl-result.txt
 
       - uses: actions/upload-artifact@v4
         with:
